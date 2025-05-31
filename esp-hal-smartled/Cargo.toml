@@ -19,15 +19,15 @@ smart-leds-trait  = "0.3.1"
 
 [dev-dependencies]
 cfg-if = "1.0.0"
-esp-backtrace = { version = "0.15.0", features = [
+esp-backtrace = { git = "https://github.com/esp-rs/esp-hal", features = [
     "exception-handler",
     "panic-handler",
     "println",
 ] }
-esp-hal-embassy = "0.7"
+esp-hal-embassy = {git = "https://github.com/esp-rs/esp-hal"}
 embassy-executor = "0.7.0"
 embassy-time = "0.4.0"
-esp-println = "0.13.0"
+esp-println = {git = "https://github.com/esp-rs/esp-hal"}
 smart-leds = "0.4.0"
 
 [features]
