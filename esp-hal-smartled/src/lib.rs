@@ -48,7 +48,6 @@ use esp_hal::{
         Error as RmtError, PulseCode, TxChannel, TxChannelAsync, TxChannelConfig, TxChannelCreator,
         TxChannelCreatorAsync,
     },
-    system::Peripheral,
 };
 use smart_leds_trait::{SmartLedsWrite, SmartLedsWriteAsync, RGB8};
 
