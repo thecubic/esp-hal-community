@@ -48,7 +48,6 @@ use esp_hal::{
         Error as RmtError, PulseCode, TxChannel, TxChannelAsync, TxChannelConfig, TxChannelCreator,
         TxChannelCreatorAsync,
     },
-    system::Peripheral,
 };
 use smart_leds_trait::{SmartLedsWrite, SmartLedsWriteAsync, RGB8};
 
@@ -180,7 +179,7 @@ where
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl Peripheral<P = O> + 'd,
+        pin: O + 'd,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapter<TX, BUFFER_SIZE>
     where
@@ -265,7 +264,7 @@ impl<'d, Tx: TxChannelAsync, const BUFFER_SIZE: usize> SmartLedsAdapterAsync<Tx,
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl Peripheral<P = O> + 'd,
+        pin: O + 'd,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapterAsync<Tx, BUFFER_SIZE>
     where
