@@ -43,7 +43,7 @@ use core::{fmt::Debug, slice::IterMut};
 
 use esp_hal::{
     clock::Clocks,
-    gpio::{Level, interconnect::PeripheralOutput},
+    gpio::{interconnect::PeripheralOutput, Level},
     peripheral::Peripheral,
     rmt::{
         Error as RmtError, PulseCode, TxChannel, TxChannelAsync, TxChannelConfig, TxChannelCreator,
@@ -180,12 +180,12 @@ where
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl Peripheral<P=O> + 'd,
+        pin: impl Peripheral<P = O> + 'd,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapter<TX, BUFFER_SIZE>
     where
-        O: PeripheralOutput,
-        C: TxChannelCreator<'d, TX, O>,
+        O: PeripheralOutput<'d>,
+        C: TxChannelCreator<'d, TX>,
     {
         let channel = channel.configure(pin, led_config()).unwrap();
 
@@ -265,12 +265,12 @@ impl<'d, Tx: TxChannelAsync, const BUFFER_SIZE: usize> SmartLedsAdapterAsync<Tx,
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl Peripheral<P=O> + 'd,
+        pin: impl Peripheral<P = O> + 'd,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapterAsync<Tx, BUFFER_SIZE>
     where
-        O: PeripheralOutput,
-        C: TxChannelCreatorAsync<'d, Tx, O>,
+        O: PeripheralOutput<'d>,
+        C: TxChannelCreatorAsync<'d, Tx>,
     {
         let channel = channel.configure(pin, led_config()).unwrap();
 
