@@ -44,11 +44,11 @@ use core::{fmt::Debug, slice::IterMut};
 use esp_hal::{
     clock::Clocks,
     gpio::{interconnect::PeripheralOutput, Level},
-    peripheral::Peripheral,
     rmt::{
         Error as RmtError, PulseCode, TxChannel, TxChannelAsync, TxChannelConfig, TxChannelCreator,
         TxChannelCreatorAsync,
     },
+    system::Peripheral,
 };
 use smart_leds_trait::{SmartLedsWrite, SmartLedsWriteAsync, RGB8};
 
