@@ -179,7 +179,7 @@ where
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl O + 'd,
+        pin: O,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapter<TX, BUFFER_SIZE>
     where
@@ -264,7 +264,7 @@ impl<'d, Tx: TxChannelAsync, const BUFFER_SIZE: usize> SmartLedsAdapterAsync<Tx,
     /// Create a new adapter object that drives the pin using the RMT channel.
     pub fn new<C, O>(
         channel: C,
-        pin: impl O + 'd,
+        pin: O,
         rmt_buffer: [u32; BUFFER_SIZE],
     ) -> SmartLedsAdapterAsync<Tx, BUFFER_SIZE>
     where
