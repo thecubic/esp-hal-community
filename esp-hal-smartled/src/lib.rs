@@ -46,7 +46,6 @@ use esp_hal::{
     gpio::{interconnect::PeripheralOutput, Level},
     rmt::{
         Error as RmtError, PulseCode, TxChannel, TxChannelAsync, TxChannelConfig, TxChannelCreator,
-        TxChannelCreatorAsync,
     },
 };
 use smart_leds_trait::{SmartLedsWrite, SmartLedsWriteAsync, RGB8};
@@ -269,7 +268,7 @@ impl<'d, Tx: TxChannelAsync, const BUFFER_SIZE: usize> SmartLedsAdapterAsync<Tx,
     ) -> SmartLedsAdapterAsync<Tx, BUFFER_SIZE>
     where
         O: PeripheralOutput<'d>,
-        C: TxChannelCreatorAsync<'d, Tx>,
+        C: TxChannelCreator<'d, Tx>,
     {
         let channel = channel.configure(pin, led_config()).unwrap();
 
